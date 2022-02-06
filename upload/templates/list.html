@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+<div class="container-fluid">
+    <h2 style="text-align:center;"><b>BOOK DETAILS</b></h2>
+<table>
+    <tr> <th>COVER</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>PDF</th>
+        <th>DELETE</th>
+        <th>EDIT</th>
+        <th>VIEW</th>
+        <th>ORDER</th>
+    </tr>
+    {% for i in b %}
+
+    <tr><td><img src="{{i.cover.url}}" width="100px" height="100px"></td>
+        <td>{{i.title}}</td>
+     <td>{{i.author}}</td>
+    <td><a href="{{i.pdf.url}}">Download</a></td>
+     <td><a href="{% url 'delete_book' i.pk %}" class="btn btn-danger">DELETE</a></td>
+     <td><a href="{% url 'edit_book' i.pk %}" class="btn btn-danger">EDIT</a></td>
+     <td><a href="{% url 'view_book' i.pk %}" class="btn btn-danger">VIEW</a></td>
+        <td><a href="{% url 'order_book' i.pk %}" class="btn btn-danger">ORDER</a></td>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

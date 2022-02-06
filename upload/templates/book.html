@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+<div class="container-fluid">
+    <h2 style="text-align:center;"><b>BOOK DETAILS</b></h2>
+<table>
+
+    <tr>
+        <th>TITLE</th>
+        <td>{{b.title}}</td>
+    </tr>
+     <tr>
+        <th>AUTHOR</th>
+        <td>{{b.author}}</td>
+    </tr>
+     <tr>
+        <th>PDF</th>
+        <td><a href="{{b.pdf.url}}">DOWNLOAD</a></td>
+    </tr>
+    <tr>
+        <th>COVER</th>
+        <td><img src="{{b.cover.url}}" width="100px" height="100px"></td>
+    </tr>
+
+</table>
+
+{% endblock %}

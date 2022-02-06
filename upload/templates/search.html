@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+
+<br>
+
+<form method="POST">
+    {% csrf_token %}
+<div class="form-group">
+<div class="col-lg-5">
+<input type="text" name="srh" class="form-control" placeholder="Enter name">
+</div>
+<label class="col-lg-2">
+<button type="submit" class="btn btn-danger">Search</button>
+</label>
+</div>
+</form></div>
+
+{% if messages %}
+
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if sr %}
+
+<table>
+
+    <tr> <th>COVER</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>PDF</th>
+        <th>DELETE</th>
+        <th>EDIT</th>
+        <th>VIEW</th>
+        <th>ORDER</th>
+    </tr>
+    {% for i in sr %}
+
+    <tr><td><img src="{{i.cover.url}}" width="100px" height="100px"></td>
+        <td>{{i.title}}</td>
+     <td>{{i.author}}</td>
+    <td><a href="{{i.pdf.url}}">Download</a></td>
+     <td><a href="{% url 'delete_book' i.pk %}" class="btn btn-danger">DELETE</a></td>
+     <td><a href="{% url 'edit_book' i.pk %}" class="btn btn-danger">EDIT</a></td>
+     <td><a href="{% url 'view_book' i.pk %}" class="btn btn-danger">VIEW</a></td>
+        <td><a href="{% url 'order_book' i.pk %}" class="btn btn-danger">ORDER</a></td>
+    {% endfor %}
+</table>
+
+
+{% endif %}
+
+
+{% endblock %}
